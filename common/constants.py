@@ -14,7 +14,7 @@ print("Start loading constants ...")
 current_path = os.getcwd().split("/")
 #current_path = "/Users/bangliu/Documents/Work/CurrentWork/FQG/src/model/FactorizedQG".split("/")
 
-DATA_PATH = "/".join(current_path[:-4]) + "/Datasets/"
+DATA_PATH = "/".join(current_path[:-4]) + "/content/gdrive/MyDrive/QGrepo-name/Datasets/"
 PROJECT_PATH = "/".join(current_path[:-4]) + "/FQG/"
 
 CODE_PATH = PROJECT_PATH + "src/model/FactorizedQG/"
@@ -29,8 +29,11 @@ RESULT_PATH = PROJECT_PATH + "output/result/"
 FUNCTION_WORDS_FILE_PATH = DATA_PATH + "original/function-words/function_words.txt"
 FIXED_EXPRESSIONS_FILE_PATH = DATA_PATH + "original/fixed-expressions/fixed_expressions.txt"
 
-BPE_MODEL_PATH = DATA_PATH + "original/BPE/en.wiki.bpe.op50000.model"
-BPE_EMB_PATH = DATA_PATH + "original/BPE/en.wiki.bpe.op50000.d100.w2v.txt"
+# BPE_MODEL_PATH = DATA_PATH + "original/BPE/en.wiki.bpe.op50000.model"
+BPE_MODEL_PATH ="/content/gdrive/MyDrive/ProjectData/en.wiki.bpe.vs5000.model"
+
+# BPE_EMB_PATH = DATA_PATH + "original/BPE/en.wiki.bpe.op50000.d100.w2v.txt"
+BPE_EMB_PATH = "/content/mydir/data/en/en.wiki.bpe.vs5000.d25.w2v.txt"
 
 GLOVE_BIN_PATH = DATA_PATH + "original/Glove/glove.840B.300d.bin"
 GLOVE_TXT_PATH = DATA_PATH + "original/Glove/glove.840B.300d.txt"

@@ -4,7 +4,7 @@ import os
 """ Prepare: run theses for one time."""
 # STEP 1: train an FQG model
 os.system(
-    'python3 QG_main.py \
+    'python3 /content/gdrive/MyDrive/QGrepo-name/QG_main.py \
         --mode train \
         --batch_size 2 \
         --epochs 2 \
@@ -19,7 +19,7 @@ os.system(
 
 # STEP 2: train data evaluators: entailment model
 os.system(
-    'python3 run_glue.py \
+    'python3 /content/gdrive/MyDrive/QGrepo-name/run_glue.py \
         --model_type xlnet \
         --model_name_or_path ../../../file/ET/models/xlnet-base-cased/ \
         --task_name MRPC \
@@ -38,7 +38,7 @@ os.system(
 
 # STEP 3: perform data augmentation. Raw input data -> sentences txt file -> augmented sentences pkl file
 os.system(
-    'python3 DA_main.py \
+    'python3 /content/gdrive/MyDrive/QGrepo-name/DA_main.py \
         --da_task file2sentences \
         --da_input_type wiki10000 \
         --da_input_file ../../../../Datasets/original/Wiki10000/wiki10000.json \
@@ -47,7 +47,7 @@ os.system(
         --debug')
 
 os.system(
-    'python3 DA_main.py \
+    'python3 /content/gdrive/MyDrive/QGrepo-name/DA_main.py \
         --da_task file2sentences \
         --da_input_type squad \
         --da_input_file ../../../../Datasets/original/SQuAD2.0/train-v2.0.json \
@@ -57,7 +57,7 @@ os.system(
 
 
 os.system(
-    'python3 DA_main.py \
+    'python3 /content/gdrive/MyDrive/QGrepo-name/DA_main.py \
         --da_task sentences2augmented_sentences \
         --da_input_type wiki10000 \
         --da_input_file ../../../../Datasets/original/Wiki10000/wiki10000.json \
@@ -70,7 +70,7 @@ os.system(
         --debug')
 
 os.system(
-    'python3 DA_main.py \
+    'python3 /content/gdrive/MyDrive/QGrepo-name/DA_main.py \
         --da_task sentences2augmented_sentences \
         --da_input_type squad \
         --da_input_file ../../../../Datasets/original/SQuAD2.0/train-v2.0.json \
@@ -83,7 +83,7 @@ os.system(
 
 # STEP 4: use trained FQG model to generate new QG data using augmented sentences
 os.system(
-    'python3 QG_augment_main.py \
+    'python3 /content/gdrive/MyDrive/QGrepo-name/QG_augment_main.py \
         --not_processed_data  \
         --batch_size 2 \
         --epochs 2 \
@@ -102,7 +102,7 @@ os.system(
 os.system('sort ../../../../Datasets/processed/SQuAD2.0/train.qa.0_10000.txt | uniq  > ../../../../Datasets/processed/SQuAD2.0/train.qa.0_10000.uniq.txt')
 
 os.system(
-    'python3 QG_augment_main.py \
+    'python3 /content/gdrive/MyDrive/QGrepo-name/QG_augment_main.py \
         --not_processed_data  \
         --batch_size 2 \
         --epochs 2 \
@@ -121,7 +121,7 @@ os.system(
 os.system('sort ../../../../Datasets/processed/Wiki10000/wiki10000.qa.0_10000.txt | uniq > ../../../../Datasets/processed/Wiki10000/wiki10000.qa.0_10000.uniq.txt')
 
 # STEP 5: use trained entailment model to append entailment score column
-os.system('python3 run_glue.py \
+os.system('python3 /content/gdrive/MyDrive/QGrepo-name/run_glue.py \
         --model_type xlnet \
         --model_name_or_path ../../../file/ET/models/xlnet-base-cased/ \
         --task_name MRPC \
@@ -140,7 +140,7 @@ os.system('python3 run_glue.py \
         --context_question_answer_score_file ../../../../Datasets/processed/SQuAD2.0/train.qa.0_10000.entail.txt \
         --debug_mode')
 
-os.system('python3 run_glue.py \
+os.system('python3 /content/gdrive/MyDrive/QGrepo-name/run_glue.py \
         --model_type xlnet \
         --model_name_or_path ../../../file/ET/models/xlnet-base-cased/ \
         --task_name MRPC \
@@ -160,12 +160,12 @@ os.system('python3 run_glue.py \
         --debug_mode')
 
 # STEP 6: perform data evaluation to filter low-quality data samples and tag data samples with quality metrics: language model, entailment model, language complexity
-os.system('python3 DE_main.py \
+os.system('python3 /content/gdrive/MyDrive/QGrepo-name/DE_main.py \
         --input_file  ../../../../Datasets/processed/SQuAD2.0/train.qa.0_10000.entail.txt \
         --input_augmented_pkl_file ../../../../Datasets/processed/SQuAD2.0/train.sentences.augmented.0_10000.processed.pkl \
         --output_file ../../../../Datasets/processed/SQuAD2.0/train.qa.0_10000.entail.de.txt')
 
-os.system('python3 DE_main.py \
+os.system('python3 /content/gdrive/MyDrive/QGrepo-name/DE_main.py \
         --input_file  ../../../../Datasets/processed/Wiki10000/wiki10000.qa.0_10000.entail.txt \
         --input_augmented_pkl_file ../../../../Datasets/processed/Wiki10000/wiki10000.sentences.augmented.0_10000.processed.pkl \
         --output_file ../../../../Datasets/processed/Wiki10000/wiki10000.qa.0_10000.entail.de.txt')
