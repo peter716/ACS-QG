@@ -14,7 +14,8 @@ print("Start loading constants ...")
 current_path = os.getcwd().split("/")
 #current_path = "/Users/bangliu/Documents/Work/CurrentWork/FQG/src/model/FactorizedQG".split("/")
 
-DATA_PATH = "/".join(current_path[:-4]) + "/content/gdrive/MyDrive/QGrepo-name/Datasets/"
+# DATA_PATH = "/".join(current_path[:-4]) + "/content/gdrive/MyDrive/QGrepo-name/Datasets/"
+DATA_PATH = "/".join(current_path[:-4]) + "/Datasets/"
 PROJECT_PATH = "/".join(current_path[:-4]) + "/FQG/"
 
 CODE_PATH = PROJECT_PATH + "src/model/FactorizedQG/"
